@@ -13,10 +13,23 @@ app.use(express.static(path.join(__dirname, "frontend")));
 const Sprinklers = new SprinklerController();
 
 app.post("/water", (req, res) => {
-  console.log(req.body);
-  const { zone, time } = req.body;
-  Sprinklers.waterZone(zone, time);
-  res.send("Successfully scheduled watering task!");
+  try {
+    const { zone, time } = req.body;
+    Sprinklers.waterZone(zone, time);
+    res.send("Successfully started watering task!");
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+app.post("/cycle", (req, res) => {
+  try {
+    const { time } = req.body;
+    Sprinklers.waterCycle(time);
+    res.send("Successfully started cycle task!");
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 app.delete("/water", (req, res) => {
