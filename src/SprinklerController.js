@@ -16,9 +16,10 @@ module.exports = class SprinklerController {
         "A cycle is already in progress. Please clear all tasks first!"
       );
     }
-    console.log(`Begin watering zone ${zone} for ${time}`);
+    this.stopAll(); // Ensure any timeouts / stops are cleared first
+    console.log(`Begin watering zone ${zone} for ${time}ms`);
     turnOnRelay(this.RELAYS, zone);
-    this.scheduledTasks.push(setTimeout(turnOnRelay, time, this.RELAYS, -1));
+    this.scheduledTasks.push(setTimeout(this.stopAll.bind(this), time));
   }
 
   waterCycle(timePerZone) {
@@ -38,7 +39,9 @@ module.exports = class SprinklerController {
     this.scheduledTasks.push(
       setTimeout(turnOnRelay, 2 * timePerZone, this.RELAYS, 2)
     );
-    this.scheduledTasks.push(setTimeout(stopAll, 3 * timePerZone));
+    this.scheduledTasks.push(
+      setTimeout(this.stopAll.bind(this), 3 * timePerZone)
+    );
   }
 
   stopAll() {
@@ -46,6 +49,7 @@ module.exports = class SprinklerController {
     turnOnRelay(this.RELAYS, -1);
     this.cycleInProgress = false;
     this.scheduledTasks.forEach(task => clearTimeout(task));
+    this.scheduledTasks = [];
   }
 
   destroy() {

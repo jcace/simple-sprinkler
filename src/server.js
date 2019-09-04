@@ -4,6 +4,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const SprinklerController = require("./SprinklerController");
 
+require("log-timestamp"); // Timestamp on all log messages
+
 const app = express();
 app.disable("x-powered-by");
 app.use(cors());
@@ -11,13 +13,18 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "frontend")));
 
 const Sprinklers = new SprinklerController();
+const MAX_MINUTES = 15;
 
 app.post("/water", (req, res) => {
   try {
     const { zone, time } = req.body;
+    if (time > 1000 * 60 * MAX_MINUTES) {
+      throw new Error("Cannot water for longer than 15 minutes!");
+    }
     Sprinklers.waterZone(zone, time);
     res.send("Successfully started watering task!");
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error });
   }
 });
@@ -25,9 +32,13 @@ app.post("/water", (req, res) => {
 app.post("/cycle", (req, res) => {
   try {
     const { time } = req.body;
+    if (time > 1000 * 60 * MAX_MINUTES) {
+      throw new Error("Cannot water for longer than 15 minutes!");
+    }
     Sprinklers.waterCycle(time);
     res.send("Successfully started cycle task!");
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error });
   }
 });
