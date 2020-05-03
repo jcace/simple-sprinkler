@@ -50,8 +50,8 @@ export default ({ status }) => {
 
         {status.timeRemaining > 0 && (
           <p>
-            Time Remaining :
-            {prettifyMs(status.timeRemaining, { compact: true })}
+            Time Remaining: 
+            {prettifyMs(status.timeRemaining)}
           </p>
         )}
       </div>

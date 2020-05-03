@@ -29,7 +29,7 @@ module.exports = class SprinklerController {
     }
     this.stopAll(); // Ensure any timeouts / stops are cleared first
     console.log(`Begin watering zone ${zone} for ${time}ms`);
-    this.timeRemaining = time;
+    if (!this.cycleInProgress) this.timeRemaining = time;
     this.isWatering = true;
     turnOnRelay(this.RELAYS, zone);
     this.scheduledTasks.push(setTimeout(this.stopAll.bind(this), time));
@@ -44,6 +44,7 @@ module.exports = class SprinklerController {
     console.log(`Begin watering a cycle of all zones for ${timePerZone} each`);
     this.cycleInProgress = true;
     this.isWatering = true;
+    this.timeRemaining = 3 * timePerZone;
 
     turnOnRelay(this.RELAYS, 0);
 
