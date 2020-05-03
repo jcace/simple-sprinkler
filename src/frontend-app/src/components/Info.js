@@ -2,23 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const Info = styled.section`
-  svg {
-    /* stroke: #8fd7ff; */
-    /* stroke: #e5e5e5;
-     */
-    stroke: ${props =>
-      (props.primary && "#8fd7ff") || (props.secondary && "#e5e5e5")};
-  }
+  background-color: #efefef;
+  width: 100%;
+  margin: 0;
+  padding: 60px 25px;
 `;
 
-export default ({ currentlyWatering, lastWaterTime, waterLength }) => {
+export default ({ status }) => {
   return (
-    <Info secondary>
+    <Info >
       <svg
         width="30"
         height="44"
         viewBox="0 0 30 44"
         fill="none"
+        stroke={status.isWatering ? "#8fd7ff" : "#e5e5e5"}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -32,6 +30,11 @@ export default ({ currentlyWatering, lastWaterTime, waterLength }) => {
           stroke-width="3.16667"
         />
       </svg>
+      {status.isWatering && <p>Watering</p>}
+
+      {status.cycleInProgress && <p>Cycle in progress</p>}
+
+      {status.timeRemaining > 0 && <p>Time Remaining : {status.timeRemaining / 1000} seconds</p>}
     </Info>
   );
 };
