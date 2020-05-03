@@ -10,7 +10,7 @@ const app = express();
 app.disable("x-powered-by");
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(path.join(__dirname, "frontend-app/build")));
 
 const Sprinklers = new SprinklerController();
 const MAX_MINUTES = 15;
@@ -42,6 +42,17 @@ app.post("/cycle", (req, res) => {
     res.status(500).json({ error });
   }
 });
+
+
+app.get("/status", (req,res) => {
+  const status = {
+    isWatering = Sprinklers.isWatering,
+    cycleInProgress = Sprinklers.cycleInProgress,
+    timeRemaining = Sprinklers.timeRemaining
+  };
+
+  res.send(status);
+})
 
 app.delete("/water", (req, res) => {
   Sprinklers.stopAll();
