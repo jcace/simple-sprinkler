@@ -46,9 +46,9 @@ app.post("/cycle", (req, res) => {
 
 app.get("/status", (req,res) => {
   const status = {
-    isWatering = Sprinklers.isWatering,
-    cycleInProgress = Sprinklers.cycleInProgress,
-    timeRemaining = Sprinklers.timeRemaining
+    isWatering: Sprinklers.isWatering,
+    cycleInProgress: Sprinklers.cycleInProgress,
+    timeRemaining: Sprinklers.timeRemaining
   };
 
   res.send(status);
