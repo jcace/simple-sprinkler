@@ -6,6 +6,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Container,
 } from "@material-ui/core";
 import axios from "axios";
 
@@ -30,7 +31,7 @@ const Form = ({ isWatering }) => {
   };
 
   return (
-    <div>
+    <Container>
       {!isWatering && (
         <div>
           <FormControlLabel
@@ -40,45 +41,58 @@ const Form = ({ isWatering }) => {
                 onChange={() => setCycleMode(!cycleMode)}
                 name="cycle"
                 color="primary"
-                style={{ width: "50px", height: "50px" }}
+                style={{ height: "50px" }}
               />
             }
             label="Cycle Mode"
           />
 
           {!cycleMode && (
-            <>
+            <div style={{ padding: "20px 0" }}>
               <InputLabel htmlFor="select-zone">Zone To Water</InputLabel>
               <Select
                 native
                 inputProps={{ id: "select-zone" }}
                 value={zoneToWater}
                 onChange={(e) => setZoneToWater(e.target.value)}
+                style={{ width: "100%" }}
               >
                 <option value={1}>Zone 1</option>
                 <option value={2}>Zone 2</option>
                 <option value={3}>Zone 3</option>
               </Select>
-            </>
+            </div>
           )}
 
-          <InputLabel htmlFor="select-time">Time To Water</InputLabel>
-          <Select
-            native
-            value={timeToWater}
-            inputProps={{ id: "select-time" }}
-            onChange={(e) => setTimeToWater(e.target.value)}
-          >
-            <option value={5}>5 Minutes</option>
-            <option value={10}>10 Minutes</option>
-            <option value={15}>15 Minutes</option>
-          </Select>
+          <div style={{ padding: "20px 0" }}>
+            <InputLabel htmlFor="select-time">Time To Water</InputLabel>
+            <Select
+              native
+              value={timeToWater}
+              inputProps={{ id: "select-time" }}
+              onChange={(e) => setTimeToWater(e.target.value)}
+              style={{ width: "100%" }}
+            >
+              <option value={5}>5 Minutes</option>
+              <option value={10}>10 Minutes</option>
+              <option value={15}>15 Minutes</option>
+            </Select>
+          </div>
         </div>
       )}
-      <Button color="primary" onClick={submitForm}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={submitForm}
+        style={{
+          width: "100%",
+          backgroundColor: "#486c80",
+          marginTop: "25px",
+        }}
+      >
         {isWatering ? "Stop Watering" : "Go!"}
       </Button>
-    </div>
+    </Container>
   );
 };
 
