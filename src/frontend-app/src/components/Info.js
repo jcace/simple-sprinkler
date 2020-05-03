@@ -51,7 +51,7 @@ export default ({ status }) => {
         {status.timeRemaining > 0 && (
           <p>
             Time Remaining :
-            {prettifyMs(status.timeRemaining, { compact: true })} seconds
+            {prettifyMs(status.timeRemaining, { compact: true })}
           </p>
         )}
       </div>

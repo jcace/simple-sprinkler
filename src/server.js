@@ -43,16 +43,15 @@ app.post("/cycle", (req, res) => {
   }
 });
 
-
-app.get("/status", (req,res) => {
+app.get("/status", (req, res) => {
   const status = {
     isWatering: Sprinklers.isWatering,
     cycleInProgress: Sprinklers.cycleInProgress,
-    timeRemaining: Sprinklers.timeRemaining
+    timeRemaining: Sprinklers.isWatering ? Sprinklers.timeRemaining : 0,
   };
 
   res.send(status);
-})
+});
 
 app.delete("/water", (req, res) => {
   Sprinklers.stopAll();
