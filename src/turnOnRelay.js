@@ -6,13 +6,15 @@ const OFF = 1;
  * If -1 is passed in as the relay to turn on, all relays will be turned off instead.
  */
 module.exports = (RELAYS, relayToTurnOn) => {
-  if (relayToTurnOn === -1) {
+  const num_relayToTurnOn = Number(relayToTurnOn);
+
+  if (num_relayToTurnOn === -1) {
     RELAYS.forEach(RELAY => {
       RELAY.writeSync(OFF);
     });
   } else {
     for (let i = 0; i < RELAYS.length; i++) {
-      if (i === relayToTurnOn) {
+      if (i === num_relayToTurnOn) {
         RELAYS[i].writeSync(ON);
       } else {
         RELAYS[i].writeSync(OFF);
