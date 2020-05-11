@@ -57,9 +57,9 @@ const Form = ({ isWatering }) => {
                 onChange={(e) => setZoneToWater(e.target.value)}
                 style={{ width: "100%" }}
               >
-                <option value={1}>Zone 1</option>
-                <option value={2}>Zone 2</option>
-                <option value={3}>Zone 3</option>
+                <option value={0}>Zone 1 (Front Yard)</option>
+                <option value={1}>Zone 2 (Back-Upper)</option>
+                <option value={2}>Zone 3 (Back-Lower)</option>
               </Select>
             </div>
           )}
