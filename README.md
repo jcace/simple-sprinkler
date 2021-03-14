@@ -34,7 +34,8 @@ Connect the Power Supply -ve to each of the "NO" pins on each relay.
 With this setup, when the relay switches on it will complete the circuit for the solenoid, connecting it to GND so current can flow from the power supply +ve, through the solenoid, and to -ve.
 
 *Wired Up*
-![wired up](docs/wired_up.jpeg)
+<br/>
+<img src="docs/wired_up.jpeg" width="500">
 
 ## Configuration
 
@@ -60,7 +61,7 @@ Grab your Pi's IP Address with `hostname -I`
 
 Open a browser on the local network, and navigate to `http://<pi-ip>:3000` . You should see the SimpleSprinkler UI
 
-![ui](docs/UI.png)
+<img src="docs/UI.png" width="500">
 
 ## Usage
 
