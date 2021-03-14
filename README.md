@@ -2,7 +2,7 @@
 
 ![logo](docs/logo.png)
 
-A simple Raspberry Pi irrigation controller. 
+A simple DIY Raspberry Pi-based irrigation controller. 
 
 > Note: I haven't spent the time to make the setup super streamlined. You'll need a bit of technical knowledge and willingness to DIY to get this going.
 
