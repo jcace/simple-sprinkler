@@ -7,9 +7,8 @@ const OFF = 1;
  */
 module.exports = (RELAYS, relayToTurnOn) => {
   const num_relayToTurnOn = Number(relayToTurnOn);
-
   if (num_relayToTurnOn === -1) {
-    RELAYS.forEach(RELAY => {
+    RELAYS.forEach((RELAY) => {
       RELAY.writeSync(OFF);
     });
   } else {
