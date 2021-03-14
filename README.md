@@ -12,7 +12,8 @@ A simple DIY Raspberry Pi-based irrigation controller.
 1. Raspberry Pi ([3B used in my build](https://www.buyapi.ca/product/raspberry-pi-3-model-b-armv8-with-1g-ram/), though any should work.)
 2. Relay control board [(This one works great)](https://www.amazon.ca/ELEGOO-Channel-Optocoupler-Arduino-Raspberry/dp/B06XCKQ1M9/)
 3. SimpleSprinkler Mount - 3D Printed [(Thingiverse)](https://www.thingiverse.com/thing:4794556)
-4. Power supplies - Use the one that came with your irrigation system. Usually 24V AC ~1A - [something like this](https://www.amazon.ca/Orbit-Sprinkler-System-Transformer-57040/dp/B000VRYVYS)
+4. Power supply - Use the one that came with your irrigation system. Usually 24V AC ~1A - [something like this](https://www.amazon.ca/Orbit-Sprinkler-System-Transformer-57040/dp/B000VRYVYS)
+5. (Optional) Raspberry Pi case/heatsinks/fan, to make it look nice and protect it. [Something like this](https://www.amazon.ca/Smraza-Compatible-Raspberry-Heatsinks-Included/dp/B07TX97C8X). Get extra long screws to go all the way through the case and affix it to the mount.
 
 Print out the SimpleSprinker mount, and mount the Pi and Relay board to it. I used 3mm threaded inserts and 3mm screws for the mounting hardware. 
 
